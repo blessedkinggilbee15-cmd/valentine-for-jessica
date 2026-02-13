@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Valentine 💜</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #5e2b97, #9b5de5);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.card {
+    background: rgba(255,255,255,0.15);
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid white;
+    margin-bottom: 15px;
+}
+
+button {
+    background: white;
+    color: #5e2b97;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 10px;
+}
+
+button:hover {
+    background: #f1e6ff;
+}
+
+#message {
+    display: none;
+    line-height: 1.6;
+}
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: float 6s infinite ease-in;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+.explosion {
+    position: absolute;
+    font-size: 30px;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(3); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2023/02/14/audio_53c5d3e7e0.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+    <div id="question">
+        <img src="jessica.jpg" alt="Jessica">
+        <h1>Jessica, will you be my Valentine? 💜</h1>
+        <button onclick="yesExplosion()">Yes 💖</button>
+        <button id="noBtn" onmouseover="moveNo()">No 😢</button>
+    </div>
+
+    <div id="message">
+        <h2>💜💜💜</h2>
+        <p>
+            Thank you for choosing to be my Valentine.  
+            I love you to the extreme.  
+            This day marks the beginning of our love journey and I pray and hope that we stick together and grow in love and strength.  
+            I love you my queen.  
+            Happy Valentine’s Day.
+        </p>
+        <p><strong>— Kay</strong></p>
+    </div>
+</div>
+
+<script>
+function yesExplosion() {
+    for (let i = 0; i < 20; i++) {
+        const heart = document.createElement("div");
+        heart.className = "explosion";
+        heart.innerHTML = "💜";
+        heart.style.left = (window.innerWidth / 2 + Math.random() * 200 - 100) + "px";
+        heart.style.top = (window.innerHeight / 2 + Math.random() * 200 - 100) + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 1000);
+    }
+    setTimeout(showMessage, 800);
+}
+
+function showMessage() {
+    document.getElementById("question").style.display = "none";
+    document.getElementById("message").style.display = "block";
+}
+
+function moveNo() {
+    const noBtn = document.getElementById("noBtn");
+    noBtn.style.position = "absolute";
+    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    noBtn.style.top = Math.random() * (window.innerHeight - 100) + "px";
+}
+
+// Floating hearts
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💜";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}, 500);
+</script>
+
+</body>
+</html>
