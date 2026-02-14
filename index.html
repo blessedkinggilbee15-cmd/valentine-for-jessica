@@ -51,10 +51,6 @@ button {
     margin: 10px;
 }
 
-button:hover {
-    background: #f1e6ff;
-}
-
 #message {
     display: none;
     line-height: 1.6;
@@ -87,8 +83,8 @@ button:hover {
 
 <body>
 
-<!-- Background Music -->
-<audio autoplay loop>
+<!-- Music (controlled by JavaScript) -->
+<audio id="bgMusic" loop>
     <source src="https://cdn.pixabay.com/audio/2023/02/14/audio_53c5d3e7e0.mp3" type="audio/mpeg">
 </audio>
 
@@ -96,7 +92,7 @@ button:hover {
     <div id="question">
         <img src="jessica.jpg" alt="Jessica">
         <h1>Jessica, will you be my Valentine? 💜</h1>
-        <button onclick="yesExplosion()">Yes 💖</button>
+        <button onclick="yesAction()">Yes 💖</button>
         <button id="noBtn" onmouseover="moveNo()">No 😢</button>
     </div>
 
@@ -114,7 +110,12 @@ button:hover {
 </div>
 
 <script>
-function yesExplosion() {
+function yesAction() {
+
+    // Start music
+    document.getElementById("bgMusic").play();
+
+    // Explosion
     for (let i = 0; i < 20; i++) {
         const heart = document.createElement("div");
         heart.className = "explosion";
@@ -124,12 +125,12 @@ function yesExplosion() {
         document.body.appendChild(heart);
         setTimeout(() => heart.remove(), 1000);
     }
-    setTimeout(showMessage, 800);
-}
 
-function showMessage() {
-    document.getElementById("question").style.display = "none";
-    document.getElementById("message").style.display = "block";
+    // Show message
+    setTimeout(() => {
+        document.getElementById("question").style.display = "none";
+        document.getElementById("message").style.display = "block";
+    }, 800);
 }
 
 function moveNo() {
